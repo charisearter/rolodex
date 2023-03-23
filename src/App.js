@@ -6,6 +6,8 @@ class App extends Component {
 		super();
 		this.state = {
 			users: [],
+			searchField: '',
+			filteredUsers: [],
 		};
 	}
 
@@ -17,10 +19,32 @@ class App extends Component {
 			.then(() => console.log('State check: ', this.state));
 	}
 
+	onSearchChange = (e) => {
+		e.preventDefault();
+		console.log(e);
+		const searchField = e.target.value.toLowerCase();
+
+		// shorthand for key and value have same name
+		// searchField: searchField
+		this.setState({ searchField });
+	};
 	render() {
+		const { users, searchField } = this.state;
+		const { onSearchChange } = this;
+
+		const filteredUsers = users.filter((user) => {
+			return user.name.toLowerCase().includes(searchField);
+		});
+
 		return (
 			<div className='App'>
-				{this.state.users.map((user) => {
+				<input
+					type='text'
+					className='search-box'
+					placeholder='Search users'
+					onChange={onSearchChange}
+				/>
+				{filteredUsers.map((user) => {
 					return <h1 key={user.id}>{user.name}</h1>;
 				})}
 			</div>
