@@ -5,22 +5,18 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			users: [
-				{
-					id: 1,
-					name: 'A',
-				},
-				{
-					id: 2,
-					name: 'B',
-				},
-				{
-					id: 3,
-					name: 'C',
-				},
-			],
+			users: [],
 		};
 	}
+
+	// add LifeCycle Methods
+	componentDidMount() {
+		fetch('https://jsonplaceholder.typicode.com/users')
+			.then((res) => res.json())
+			.then((data) => this.setState({ users: data }))
+			.then(() => console.log('State check: ', this.state));
+	}
+
 	render() {
 		return (
 			<div className='App'>
