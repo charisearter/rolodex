@@ -3,7 +3,7 @@ import './App.css';
 
 // Components
 import CardList from './components/card-list/CardList';
-
+import SearchBox from './components/search-box/SearchBox';
 class App extends Component {
 	constructor() {
 		super();
@@ -41,16 +41,12 @@ class App extends Component {
 
 		return (
 			<div className='App'>
-				<input
-					type='text'
+				<SearchBox
+					onChangeHandler={onSearchChange}
 					className='search-box'
-					placeholder='Search users'
-					onChange={onSearchChange}
+					placeholder='Search Users'
 				/>
 				<CardList users={filteredUsers} />
-				{/* {filteredUsers.map((user) => {
-					return <h1 key={user.id}>{user.name}</h1>;
-				})} */}
 			</div>
 		);
 	}
