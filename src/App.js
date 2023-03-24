@@ -41,6 +41,7 @@ class App extends Component {
 
 		return (
 			<div className='App'>
+				<h1 className='app-title'>Rolodex</h1>
 				<SearchBox
 					onChangeHandler={onSearchChange}
 					className='search-box'
